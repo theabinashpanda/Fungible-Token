@@ -94,6 +94,7 @@ contract ERC20Token is IERC20 {
      * @param recipient The address of the recipient.
      * @param amount The amount of tokens to transfer.
      */
+    
     function _transfer(address sender, address recipient, uint256 amount) internal {
         require(sender != address(0), "ERC20: transfer from the zero address");
         require(recipient != address(0), "ERC20: transfer to the zero address");
@@ -109,10 +110,23 @@ contract ERC20Token is IERC20 {
      * @param spender The address of the spender.
      * @param amount The amount of tokens to be approved.
      */
+
     function _approve(address owner, address spender, uint256 amount) internal {
         require(owner != address(0), "ERC20: approve from the zero address");
         require(spender != address(0), "ERC20: approve to the zero address");
         _allowances[owner][spender] = amount;
         emit Approval(owner, spender, amount);
+    }
+
+    /**
+     * @dev Transfers tokens from the sender's account to another account.
+     * @param recipient The address of the recipient.
+     * @param amount The amount of tokens to transfer.
+     * @return A boolean indicating whether the transfer was successful or not.
+     */
+
+    function transfer(address recipient, uint256 amount) public override returns (bool) {
+        _transfer(msg.sender, recipient, amount);
+        return true;
     }
 }
