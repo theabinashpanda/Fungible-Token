@@ -158,4 +158,30 @@ contract ERC20Token is IERC20 {
         return true;
     }
 
+    /**
+     * @dev Increases the allowance for a spender.
+     * @param spender The address of the spender.
+     * @param addedValue The amount of increase in allowance.
+     * @return A boolean indicating whether the increase in allowance was successful or not.
+     */
+    
+    function increaseAllowance(address spender, uint256 addedValue) public returns (bool) {
+        _approve(msg.sender, spender, _allowances[msg.sender][spender] + addedValue);
+        return true;
+    }
+
+    /**
+     * @dev Decreases the allowance for a spender.
+     * @param spender The address of the spender.
+     * @param subtractedValue The amount of decrease in allowance.
+     * @return A boolean indicating whether the decrease in allowance was successful or not.
+     */
+
+    function decreaseAllowance(address spender, uint256 subtractedValue) public returns (bool) {
+        uint256 currentAllowance = _allowances[msg.sender][spender];
+        require(currentAllowance >= subtractedValue, "ERC20: decreased allowance below zero");
+        _approve(msg.sender, spender, currentAllowance - subtractedValue);
+        return true;
+    }
+
 }
