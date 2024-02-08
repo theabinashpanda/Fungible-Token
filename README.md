@@ -30,21 +30,25 @@ The objective of this project is to implement a basic fungible token adhering to
 ## UML Design
 ![UML](https://www.plantuml.com/plantuml/dpng/dLJ1Qjmm4BtxAmPwSLWRIg2bB3Gab1PwAhIXLpEMPukeB1b9JWXf_hrQHvggChL9z-ArFE_DlF5xldOUhPz7LLLIUx8d50IVFtxzSFaQ7Yi8lqVidRSe_1Duur5zcwT9FTGNS8GvG2xVl2tBUbIe1NqvrJWCbfm35CBCsczWmaMx4rc6M19oagHzao20OoBfZL4b0ofbxizzcSBSQx8Df5itaHx8RWo1qsJD7TK5Odk2jOPFren_E2B5otIrxNAvJLiv1SfZucZ0c-pc3jLChEbY0TuiIb3LomwouYXf0_vKLKAXSx2OuDRy91sTq49GAlKFw3IEL1ovXx5FmxEoBdDCV3I69GS0x-Vz5RU6BZh7_RDs2nxmx06NR_6GIQdFetV7E7O3psDd1vtKqiiqTB7M0vpXmVkf_laqigpF1n9oHEKuBU_YWwqa7R80nU3mwrhNSd3OM5pSH6Sn95aiGdbRkovPjUMeb9LxFV_AY2knBzSWjR24ZcvOotgYy8U6xxdDIvQ1zbdSt2yvtw1Ynxs2BWdzFv699QrvDyRCaESuIt3R_hgAt_MgkWxWyoV_Dm00)
 
-## Getting Started
+## Setting up Development Environment
 To get started with the project, follow these steps:
 1. Open a terminal/PowerShell and see if they are installed:
-```
+```sh
 node -v
 npm -v
 git --version
 ```
 
 2. Clone the repository:
-```
+```sh
 git clone https://gitlab.mindfire.co.in/abinash.p/fungible-token.git
 ```
 
-2. 
+3. Install Hardhat and Initialization
+```sh
+npm install --save-dev hardhat
+npx hardhat init
+```
 
 ## Contributers
 [Abinash Panda](https://gitlab.mindfire.co.in/abinash.p)
