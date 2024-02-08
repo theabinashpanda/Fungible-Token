@@ -6,6 +6,7 @@ pragma solidity ^0.8.0;
  * @dev This contract implements the ERC20 standard token functionality.
  *      For more details, refer to: https://eips.ethereum.org/EIPS/eip-20
  * @author https://gitlab.mindfire.co.in/abinash.p
+ * @author https://github.com/theabinashpanda
  */
 
 import {IERC20} from "./IERC20.sol";
@@ -85,5 +86,33 @@ contract ERC20Token is IERC20 {
 
     function allowance(address owner, address spender) public view override returns (uint256) {
         return _allowances[owner][spender];
+    }
+
+        /**
+     * @dev Internal function to transfer tokens from one account to another.
+     * @param sender The address of the sender.
+     * @param recipient The address of the recipient.
+     * @param amount The amount of tokens to transfer.
+     */
+    function _transfer(address sender, address recipient, uint256 amount) internal {
+        require(sender != address(0), "ERC20: transfer from the zero address");
+        require(recipient != address(0), "ERC20: transfer to the zero address");
+
+        _balances[sender] -= amount;
+        _balances[recipient] += amount;
+        emit Transfer(sender, recipient, amount);
+    }
+
+    /**
+     * @dev Internal function to approve a spender to spend tokens on behalf of an owner.
+     * @param owner The address of the owner.
+     * @param spender The address of the spender.
+     * @param amount The amount of tokens to be approved.
+     */
+    function _approve(address owner, address spender, uint256 amount) internal {
+        require(owner != address(0), "ERC20: approve from the zero address");
+        require(spender != address(0), "ERC20: approve to the zero address");
+        _allowances[owner][spender] = amount;
+        emit Approval(owner, spender, amount);
     }
 }
