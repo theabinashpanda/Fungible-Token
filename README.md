@@ -3,7 +3,7 @@
 ## Objective
 The objective of this project is to implement a basic fungible token adhering to the ERC20 standard without utilizing external libraries like OpenZeppelin. This token will support standard functionalities such as transferring tokens, approving and transferring on behalf of another address, and querying token balances.
 
-## Requirements
+## Functionalities 
 1. **Total Supply:** The total supply of the token should be fixed and initialized during deployment.
    
 2. **Decimals:** The token should support a specified number of decimals.
@@ -25,20 +25,26 @@ The objective of this project is to implement a basic fungible token adhering to
 
 3. **Unit Tests:** Comprehensive unit tests are developed to ensure the functionality and integrity of the ERC20 token.
 
-4. **Deployment:** The ERC20 token is deployed on a testnet after conducting thorough code review. Complete source code is provided for browsing in the explorer.
+4. **Deployment:** The ERC20 token is deployed on a testnet after conducting thorough code review. Complete source code is provided for browsing in the explorer
 
-5. **Slither Static Analysis Report:** (Optional) A Slither static analysis report is generated to ensure code quality and security of the token implementation.
-
-6. **Conceptual Learning:** (Optional) Conceptual learning of ERC223 and ERC777 standards for additional insights into token standards.
-
-## Guidelines
-1. Utilize Hardhat tool for development.
-2. Follow the NatSpec coding convention for documenting the codebase.
-3. Maintain all deliverables in a Mindfire Gitlab repository.
-4. Ensure to get the contract design reviewed before implementation for accuracy and efficiency.
+## UML Design
+![UML](https://www.plantuml.com/plantuml/dpng/dLJ1Qjmm4BtxAmPwSLWRIg2bB3Gab1PwAhIXLpEMPukeB1b9JWXf_hrQHvggChL9z-ArFE_DlF5xldOUhPz7LLLIUx8d50IVFtxzSFaQ7Yi8lqVidRSe_1Duur5zcwT9FTGNS8GvG2xVl2tBUbIe1NqvrJWCbfm35CBCsczWmaMx4rc6M19oagHzao20OoBfZL4b0ofbxizzcSBSQx8Df5itaHx8RWo1qsJD7TK5Odk2jOPFren_E2B5otIrxNAvJLiv1SfZucZ0c-pc3jLChEbY0TuiIb3LomwouYXf0_vKLKAXSx2OuDRy91sTq49GAlKFw3IEL1ovXx5FmxEoBdDCV3I69GS0x-Vz5RU6BZh7_RDs2nxmx06NR_6GIQdFetV7E7O3psDd1vtKqiiqTB7M0vpXmVkf_laqigpF1n9oHEKuBU_YWwqa7R80nU3mwrhNSd3OM5pSH6Sn95aiGdbRkovPjUMeb9LxFV_AY2knBzSWjR24ZcvOotgYy8U6xxdDIvQ1zbdSt2yvtw1Ynxs2BWdzFv699QrvDyRCaESuIt3R_hgAt_MgkWxWyoV_Dm00)
 
 ## Getting Started
-To get started with the project, clone the repository and follow the setup instructions provided in the README.md file.
+To get started with the project, follow these steps:
+1. Open a terminal/PowerShell and see if they are installed:
+```
+node -v
+npm -v
+git --version
+```
+
+2. Clone the repository:
+```
+git clone https://gitlab.mindfire.co.in/abinash.p/fungible-token.git
+```
+
+2. 
 
 ## Contributers
 [Abinash Panda](https://gitlab.mindfire.co.in/abinash.p)
