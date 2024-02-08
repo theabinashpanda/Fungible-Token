@@ -136,8 +136,26 @@ contract ERC20Token is IERC20 {
      * @param amount The amount of tokens to be approved.
      * @return A boolean indicating whether the approval was successful or not.
      */
+
     function approve(address spender, uint256 amount) public override returns (bool) {
         _approve(msg.sender, spender, amount);
         return true;
     }
+    
+    /**
+     * @dev Transfers tokens from one account to another on behalf of the owner.
+     * @param sender The address of the sender.
+     * @param recipient The address of the recipient.
+     * @param amount The amount of tokens to transfer.
+     * @return A boolean indicating whether the transfer was successful or not.
+     */
+
+    function transferFrom(address sender, address recipient, uint256 amount) public override returns (bool) {
+        _transfer(sender, recipient, amount);
+        uint256 currentAllowance = _allowances[sender][msg.sender];
+        require(currentAllowance >= amount, "ERC20: transfer amount exceeds allowance");
+        _approve(sender, msg.sender, currentAllowance - amount);
+        return true;
+    }
+
 }
