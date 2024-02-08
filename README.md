@@ -18,17 +18,8 @@ The objective of this project is to implement a basic fungible token adhering to
    
 7. **Events:** Emit appropriate events such as Transfer and Approval for better transparency.
 
-## Deliverables
-1. **Contract Design:** The contract design is represented in UML format using PlantUML online editor.
-
-2. **Contract Implementation:** The ERC20 token contract is implemented in Solidity, adhering to the provided requirements.
-
-3. **Unit Tests:** Comprehensive unit tests are developed to ensure the functionality and integrity of the ERC20 token.
-
-4. **Deployment:** The ERC20 token is deployed on a testnet after conducting thorough code review. Complete source code is provided for browsing in the explorer
-
 ## UML Design
-![UML](https://www.plantuml.com/plantuml/dpng/dLJ1Qjmm4BtxAmPwSLWRIg2bB3Gab1PwAhIXLpEMPukeB1b9JWXf_hrQHvggChL9z-ArFE_DlF5xldOUhPz7LLLIUx8d50IVFtxzSFaQ7Yi8lqVidRSe_1Duur5zcwT9FTGNS8GvG2xVl2tBUbIe1NqvrJWCbfm35CBCsczWmaMx4rc6M19oagHzao20OoBfZL4b0ofbxizzcSBSQx8Df5itaHx8RWo1qsJD7TK5Odk2jOPFren_E2B5otIrxNAvJLiv1SfZucZ0c-pc3jLChEbY0TuiIb3LomwouYXf0_vKLKAXSx2OuDRy91sTq49GAlKFw3IEL1ovXx5FmxEoBdDCV3I69GS0x-Vz5RU6BZh7_RDs2nxmx06NR_6GIQdFetV7E7O3psDd1vtKqiiqTB7M0vpXmVkf_laqigpF1n9oHEKuBU_YWwqa7R80nU3mwrhNSd3OM5pSH6Sn95aiGdbRkovPjUMeb9LxFV_AY2knBzSWjR24ZcvOotgYy8U6xxdDIvQ1zbdSt2yvtw1Ynxs2BWdzFv699QrvDyRCaESuIt3R_hgAt_MgkWxWyoV_Dm00)
+![UML](https://www.plantuml.com/plantuml/dpng/dLHDQzmm4BtxLmpquh0sb41BMMX8A2tqL6X3BwMOiJnRHFLX93aXfDdVNjcHLDK6BPkzh3sQzpHlzhszjWwDcwIeAguScGCoWiyVltwuV0sF5VZF8_RM6MJk2NRWj4FnRHf7yL1Vm1uc3xfyytRRsAD0nUZBeSPXC6Gj86DwKgw8yW_A7iWaa276HqxADH44A2DDhxNOSg0G-dw-Ev7eUqMcWVXgHr83cU8WE8v6tr6zmfoSOgFaaz7o7qiWEKzTsovVjt4t1q-vZnmDE9sztA6OAEcwM80tYnOKzRA7h3c8Ai2Vgee9j1OMGzpgtwI2ArhmMhdw1Pr2IQkIVP1z73ufwpBlX2Ffrpm3ViI5lB-AxJ-X2nQoXUOIWMT8Lh3v8dUPcdgUljk7oHjudZmhT5nnn-FSgyqUOORx8CJ-K7rcsTO7OboYi2awxy91ALR7B4iXG-aNM_Nc2KhUIirDC5U2_EUoOnQSeb6srsPvMNMMxrp7nAwnvshO0LVC45gwILgs4_a76hvdJj-m37IQnKxz4lOYrIleeiANgOiiSR-d8nmPyWndwMtRFrVX_xsghZruak8l)
 
 ## Setting up Development Environment
 To get started with the project, follow these steps:
