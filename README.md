@@ -90,6 +90,7 @@ npx hardhat init
 ```sh
     npx hardhat verify --network <network name> <Deployed Address> <Args1> <Args2> ...
 ```
+- [Verified Contract Link](https://sepolia.etherscan.io/address/0x33ad683F1E67b0a98c66E305213156e16A540075)
 
 ## Unit Testing
 - Run the following command:
