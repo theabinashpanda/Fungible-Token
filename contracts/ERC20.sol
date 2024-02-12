@@ -18,6 +18,7 @@ contract ERC20Token is IERC20 {
     mapping(address => uint256) private _balances; // Balances of token holders
     mapping(address => mapping(address => uint256)) private _allowances; // Allowances for token spending
 
+
     /**
      * @dev Constructor to initialize the token with a name and symbol.
      * @param name_ The name of the token.
@@ -30,6 +31,7 @@ contract ERC20Token is IERC20 {
         , string memory symbol_
         , uint256 _initialSupply
     ) {
+        require(_initialSupply > 0,"ERC20: Value less than or equal to 0");
         _name = name_; // Set the name of the token
         _symbol = symbol_; // Set the symbol of the token
         _totalSupply = _initialSupply;
@@ -95,7 +97,8 @@ contract ERC20Token is IERC20 {
      * @param amount The amount of tokens to transfer.
      */
 
-    function _transfer(address sender, address recipient, uint256 amount) internal {
+    function _transfer(address sender, address recipient, uint256 amount) internal{
+        require(recipient != msg.sender || sender != recipient, "ERC20: cannot transfer to self");
         require(sender != address(0), "ERC20: transfer from the zero address");
         require(recipient != address(0), "ERC20: transfer to the zero address");
 
@@ -112,6 +115,7 @@ contract ERC20Token is IERC20 {
      */
 
     function _approve(address owner, address spender, uint256 amount) internal {
+        require(spender != msg.sender || owner != spender, "ERC20: cannot approve self");
         require(owner != address(0), "ERC20: approve from the zero address");
         require(spender != address(0), "ERC20: approve to the zero address");
         _allowances[owner][spender] = amount;
@@ -151,9 +155,9 @@ contract ERC20Token is IERC20 {
      */
 
     function transferFrom(address sender, address recipient, uint256 amount) public override returns (bool) {
-        _transfer(sender, recipient, amount);
         uint256 currentAllowance = _allowances[sender][msg.sender];
         require(currentAllowance >= amount, "ERC20: transfer amount exceeds allowance");
+        _transfer(sender, recipient, amount);
         _approve(sender, msg.sender, currentAllowance - amount);
         return true;
     }

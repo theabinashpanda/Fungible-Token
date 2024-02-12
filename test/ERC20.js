@@ -81,4 +81,20 @@ describe("ERC20", function() {
         // Expecting revert when decreasing allowance below zero
         await expect(ERC20TokenInstance.decreaseAllowance(otherAccount.address, 150)).to.be.revertedWith("ERC20: decreased allowance below zero");
     });
+
+    it("fails to initiate with zero supply", async () => {
+        const ERC20Token = await ethers.getContractFactory("ERC20Token");
+        await expect(ERC20Token.deploy("Token", "TKN", 0)).to.be.revertedWith("ERC20: Value less than or equal to 0");
+    });
+
+    it("fails to approve or transfer to self", async () => {
+        const ERC20Token = await ethers.getContractFactory("ERC20Token");
+        const ERC20TokenInstance = await ERC20Token.deploy("Token", "TKN", 100);
+        const [owner] = await ethers.getSigners();
+        // Expecting revert when approving to self.
+        await expect(ERC20TokenInstance.approve(owner, 50)).to.be.revertedWith("ERC20: cannot approve self");
+        // Expecting revert when transferring to self
+        await expect(ERC20TokenInstance.transfer(owner, 10)).to.be.revertedWith("ERC20: cannot transfer to self");
+    });
+    
 });
