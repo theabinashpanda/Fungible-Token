@@ -15,9 +15,11 @@ contract ERC20Token is IERC20 {
     string private _name; // Token name
     string private _symbol; // Token symbol
     uint256 private _totalSupply; // Total token supply
+    address private _owner; // Owner of the contract
     mapping(address => uint256) private _balances; // Balances of token holders
     mapping(address => mapping(address => uint256)) private _allowances; // Allowances for token spending
 
+    
 
     /**
      * @dev Constructor to initialize the token with a name and symbol.
@@ -34,9 +36,15 @@ contract ERC20Token is IERC20 {
         require(_initialSupply > 0,"ERC20: Value less than or equal to 0");
         _name = name_; // Set the name of the token
         _symbol = symbol_; // Set the symbol of the token
+        _owner = msg.sender;
         _totalSupply = _initialSupply * 10 ** uint256(decimals());
         _balances[msg.sender] = _totalSupply;
         emit Transfer(address(0), msg.sender, _totalSupply);
+    }
+
+    modifier onlyOwner() {
+        require(msg.sender == _owner, "ERC20: Only owner can perform this action");
+        _;
     }
 
     /**
@@ -90,7 +98,19 @@ contract ERC20Token is IERC20 {
         return _allowances[owner][spender];
     }
 
-        /**
+    /**
+     * @dev Transfers ownership of the contract to a new address.
+     *      Can only be called by the current owner.
+     * @param newOwner The address of the new owner.
+     */
+
+    function transferOwnership(address newOwner) public onlyOwner {
+        require(newOwner != address(0), "ERC20Token: new owner is the zero address");
+        emit OwnershipTransferred(_owner, newOwner);
+        _owner = newOwner;
+    }
+
+    /**
      * @dev Internal function to transfer tokens from one account to another.
      * @param sender The address of the sender.
      * @param recipient The address of the recipient.

@@ -78,4 +78,12 @@ interface IERC20 {
 
     event Approval(address indexed owner, address indexed spender, uint256 value);
 
+    /**
+     * @dev Emitted when ownership of the contract is transferred to a new address.
+     * @param previousOwner The address of the previous owner.
+     * @param newOwner The address of the new owner.
+     */
+
+    event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);
+
 }
