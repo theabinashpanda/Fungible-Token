@@ -34,7 +34,7 @@ contract ERC20Token is IERC20 {
         require(_initialSupply > 0,"ERC20: Value less than or equal to 0");
         _name = name_; // Set the name of the token
         _symbol = symbol_; // Set the symbol of the token
-        _totalSupply = _initialSupply;
+        _totalSupply = _initialSupply * 10 ** uint256(decimals());
         _balances[msg.sender] = _totalSupply;
         emit Transfer(address(0), msg.sender, _totalSupply);
     }
