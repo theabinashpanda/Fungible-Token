@@ -51,7 +51,7 @@ contract ERC20Token is IERC20 {
      * @dev Returns the name of the token.
      */
 
-    function name() public view virtual returns (string memory) {
+    function name() public view returns (string memory) {
         return _name;
     }
 
@@ -59,7 +59,7 @@ contract ERC20Token is IERC20 {
      * @dev Returns the symbol of the token.
      */
 
-    function symbol() public view virtual returns (string memory) {
+    function symbol() public view returns (string memory) {
         return _symbol;
     }
 
@@ -67,7 +67,7 @@ contract ERC20Token is IERC20 {
      * @dev Returns the number of decimal places for the token.
      */
 
-    function decimals() public view virtual returns (uint8) {
+    function decimals() public pure returns (uint8) {
         return 18;
     }
 
@@ -75,7 +75,7 @@ contract ERC20Token is IERC20 {
      * @dev Returns the total supply of the token.
      */
 
-    function totalSupply() public view override returns (uint256) {
+    function totalSupply() public view returns (uint256) {
         return _totalSupply;
     }
 
@@ -84,7 +84,7 @@ contract ERC20Token is IERC20 {
      * @param account The address of the account to query the balance of.
      */
 
-    function balanceOf(address account) public view override returns (uint256) {
+    function balanceOf(address account) public view returns (uint256) {
         return _balances[account];
     }
 
@@ -94,7 +94,7 @@ contract ERC20Token is IERC20 {
      * @param spender The address of the spender.
      */
 
-    function allowance(address owner, address spender) public view override returns (uint256) {
+    function allowance(address owner, address spender) public view returns (uint256) {
         return _allowances[owner][spender];
     }
 
@@ -149,7 +149,7 @@ contract ERC20Token is IERC20 {
      * @return A boolean indicating whether the transfer was successful or not.
      */
 
-    function transfer(address recipient, uint256 amount) public override returns (bool) {
+    function transfer(address recipient, uint256 amount) public returns (bool) {
         _transfer(msg.sender, recipient, amount);
         return true;
     }
@@ -161,7 +161,7 @@ contract ERC20Token is IERC20 {
      * @return A boolean indicating whether the approval was successful or not.
      */
 
-    function approve(address spender, uint256 amount) public override returns (bool) {
+    function approve(address spender, uint256 amount) public returns (bool) {
         _approve(msg.sender, spender, amount);
         return true;
     }
@@ -174,7 +174,7 @@ contract ERC20Token is IERC20 {
      * @return A boolean indicating whether the transfer was successful or not.
      */
 
-    function transferFrom(address sender, address recipient, uint256 amount) public override returns (bool) {
+    function transferFrom(address sender, address recipient, uint256 amount) public returns (bool) {
         uint256 currentAllowance = _allowances[sender][msg.sender];
         require(currentAllowance >= amount, "ERC20: transfer amount exceeds allowance");
         _transfer(sender, recipient, amount);
