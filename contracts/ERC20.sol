@@ -19,8 +19,14 @@ contract ERC20Token is IERC20 {
     mapping(address => uint256) private _balances; // Balances of token holders
     mapping(address => mapping(address => uint256)) private _allowances; // Allowances for token spending
 
-    
+    /**
+     * @dev Emitted when ownership of the contract is transferred to a new address.
+     * @param previousOwner The address of the previous owner.
+     * @param newOwner The address of the new owner.
+     */
 
+    event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);
+    
     /**
      * @dev Constructor to initialize the token with a name and symbol.
      * @param name_ The name of the token.
