@@ -1,9 +1,7 @@
 require("@nomicfoundation/hardhat-toolbox");
+require("@nomicfoundation/hardhat-verify");
 require('solidity-coverage');
-
-const fs = require("fs");
-let mnemonic = fs.readFileSync(".secret").toString().trim();
-let infuraProjectID = fs.readFileSync(".infura").toString().trim();
+require('dotenv').config();
 
 /** 
  * @type import('hardhat/config').HardhatUserConfig 
@@ -12,26 +10,16 @@ let infuraProjectID = fs.readFileSync(".infura").toString().trim();
 module.exports = {
   networks: {
     goerli: {
-      url: "https://goerli.infura.io/v3/" + infuraProjectID,
-      accounts: {
-        mnemonic,
-        path: "m/44'/60'/0'/0",
-        initialIndex: 0,
-        count: 20,
-      },
+      url: `https://goerli.infura.io/v3/${process.env.INFURA_KEY}`,
+      accounts: [process.env.PRIVATE_KEY],
     },
     sepolia: {
-      url: "https://sepolia.infura.io/v3/" + infuraProjectID,
-      accounts: {
-        mnemonic,
-        path: "m/44'/60'/0'/0",
-        initialIndex: 0,
-        count: 20,
-      },
+      url: `https://sepolia.infura.io/v3/${process.env.INFURA_KEY}`,
+      accounts: [process.env.PRIVATE_KEY],
     },
   },
   etherscan:{
-    apiKey: fs.readFileSync(".etherscan").toString().trim(),
+    apiKey: process.env.ETHERSCAN_API_KEY
   },
   sourcify: {
     enabled: false

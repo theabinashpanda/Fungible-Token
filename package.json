@@ -11,9 +11,11 @@
   "license": "ISC",
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^4.0.0",
+    "@nomicfoundation/hardhat-verify": "^2.0.4",
     "hardhat": "^2.19.5"
   },
   "dependencies": {
+    "dotenv": "^16.4.3",
     "solidity-coverage": "^0.8.7"
   }
 }
