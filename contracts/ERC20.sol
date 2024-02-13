@@ -28,6 +28,16 @@ contract ERC20Token is IERC20 {
     event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);
     
     /**
+     * @dev Modifier to only allow the owner of the contract to perform a certain action.
+     * @notice Reverts if the caller is not the owner.
+     */
+    
+    modifier onlyOwner() {
+        require(msg.sender == _owner, "ERC20: Only owner can perform this action");
+        _;
+    }
+
+    /**
      * @dev Constructor to initialize the token with a name and symbol.
      * @param name_ The name of the token.
      * @param symbol_ The symbol of the token.
@@ -46,11 +56,6 @@ contract ERC20Token is IERC20 {
         _totalSupply = _initialSupply * 10 ** uint256(decimals());
         _balances[msg.sender] = _totalSupply;
         emit Transfer(address(0), msg.sender, _totalSupply);
-    }
-
-    modifier onlyOwner() {
-        require(msg.sender == _owner, "ERC20: Only owner can perform this action");
-        _;
     }
 
     /**
