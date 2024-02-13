@@ -131,15 +131,6 @@ describe("ERC20", function() {
         await expect(ERC20TokenInstance.transferOwnership(otherAccount.address)).not.to.be.reverted;
         
     });
-
-    it("is possible to transfer owner", async () => {
-        // Deploy ERC20Token contract
-        const ERC20Token = await ethers.getContractFactory("ERC20Token");
-        const ERC20TokenInstance = await ERC20Token.deploy("Token", "TKN", 100);
-        const [owner, otherAccount] = await ethers.getSigners();
-        // Transfer ownership from owner to otherAccount
-        await expect(ERC20TokenInstance.transferOwnership(otherAccount.address)).not.to.be.reverted;
-    });
     
     it("fails to transfer owner", async () => {
         // Deploy ERC20Token contract
