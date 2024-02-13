@@ -1,4 +1,5 @@
 require("@nomicfoundation/hardhat-toolbox");
+require('solidity-coverage');
 
 const fs = require("fs");
 let mnemonic = fs.readFileSync(".secret").toString().trim();

@@ -101,13 +101,13 @@ contract ERC20Token is IERC20 {
     /**
      * @dev Transfers ownership of the contract to a new address.
      *      Can only be called by the current owner.
-     * @param newOwner The address of the new owner.
+     * @param _newOwner The address of the new owner.
      */
 
-    function transferOwnership(address newOwner) public onlyOwner {
-        require(newOwner != address(0), "ERC20Token: new owner is the zero address");
-        emit OwnershipTransferred(_owner, newOwner);
-        _owner = newOwner;
+    function transferOwnership(address _newOwner) public onlyOwner {
+        require(_newOwner != address(0), "ERC20: new owner is the zero address");
+        emit OwnershipTransferred(_owner, _newOwner);
+        _owner = _newOwner;
     }
 
     /**
