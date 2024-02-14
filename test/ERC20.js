@@ -218,6 +218,7 @@ describe("ERC20", function() {
         await expect(ERC20TokenInstance.transferFrom(otherAccount.address,"0x0000000000000000000000000000000000000000", 10)).to.be.revertedWith("ERC20: transfer to the zero address");
     });
     
+    // Test case to verify that it fails to approve to zero address
     it("fails to approve to zero address", async () => {
         // Deploy ERC20Token contract
         const ERC20Token = await ethers.getContractFactory("ERC20Token");
@@ -227,6 +228,7 @@ describe("ERC20", function() {
         await expect(ERC20TokenInstance.approve("0x0000000000000000000000000000000000000000", 10)).to.be.revertedWith("ERC20: approve to the zero address");
     });
 
+    // Test case to verify that it fails to approve or transfer zero amount
     it("fails to approve or transfer zero amount", async () => {
         const ERC20Token = await ethers.getContractFactory("ERC20Token");
         const ERC20TokenInstance = await ERC20Token.deploy("Token", "TKN", 100);
@@ -237,6 +239,7 @@ describe("ERC20", function() {
         await expect(ERC20TokenInstance.transfer(owner, 0)).to.be.revertedWith("ERC20: Amount should be greater than 0");
     });
 
+    // Test case to verify that it fails to increase allowance by 0
     it("fails possible to increase allowance by 0", async () => {
         const ERC20Token = await ethers.getContractFactory("ERC20Token");
         const ERC20TokenInstance = await ERC20Token.deploy("Token", "TKN", 100);
@@ -245,6 +248,7 @@ describe("ERC20", function() {
         await expect(ERC20TokenInstance.increaseAllowance(otherAccount.address, 0)).to.be.revertedWith("ERC20: Amount should be greater than 0");
     });
 
+    // Test case to verify that it fails to decrease allowance by 0
     it("fails to decrease allowance by 0", async () => {
         const ERC20Token = await ethers.getContractFactory("ERC20Token");
         const ERC20TokenInstance = await ERC20Token.deploy("Token", "TKN", 100);
