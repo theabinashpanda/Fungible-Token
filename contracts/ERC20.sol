@@ -48,7 +48,7 @@ contract ERC20Token is IERC20 {
     }
 
     /**
-     * @dev Constructor to initialize the token with a name and symbol.
+     * @dev Constructor to initializedecreasing the token with a name and symbol.
      * @param name_ The name of the token.
      * @param symbol_ The symbol of the token.
      * @param initialSupply_ Initial supply of the token.
@@ -220,7 +220,7 @@ contract ERC20Token is IERC20 {
      * @return A boolean indicating whether the increase in allowance was successful or not.
      */
     
-    function increaseAllowance(address spender, uint256 addedValue) public returns (bool) {
+    function increaseAllowance(address spender, uint256 addedValue) public notZeroAmount(addedValue) returns (bool) {
         _approve(msg.sender, spender, _allowances[msg.sender][spender] + addedValue);
         return true;
     }
@@ -232,7 +232,7 @@ contract ERC20Token is IERC20 {
      * @return A boolean indicating whether the decrease in allowance was successful or not.
      */
 
-    function decreaseAllowance(address spender, uint256 subtractedValue) public returns (bool) {
+    function decreaseAllowance(address spender, uint256 subtractedValue) public notZeroAmount(subtractedValue) returns (bool) {
         uint256 currentAllowance = _allowances[msg.sender][spender];
         require(currentAllowance >= subtractedValue, "ERC20: decreased allowance below zero");
         _approve(msg.sender, spender, currentAllowance - subtractedValue);
