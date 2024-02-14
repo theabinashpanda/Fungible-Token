@@ -226,5 +226,15 @@ describe("ERC20", function() {
         // Attempt to approve to the zero address
         await expect(ERC20TokenInstance.approve("0x0000000000000000000000000000000000000000", 10)).to.be.revertedWith("ERC20: approve to the zero address");
     });
+
+    it("fails to approve or transfer zero amount", async () => {
+        const ERC20Token = await ethers.getContractFactory("ERC20Token");
+        const ERC20TokenInstance = await ERC20Token.deploy("Token", "TKN", 100);
+        const [owner,otherAccount] = await ethers.getSigners();
+        // Expecting revert when approving to self.
+        await expect(ERC20TokenInstance.approve(owner, 0)).to.be.revertedWith("ERC20: Amount should be greater than 0");
+        // Expecting revert when transferring to self
+        await expect(ERC20TokenInstance.transfer(owner, 0)).to.be.revertedWith("ERC20: Amount should be greater than 0");
+    });
     
 });
