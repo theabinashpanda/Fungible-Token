@@ -41,19 +41,19 @@ contract ERC20Token is IERC20 {
      * @dev Constructor to initialize the token with a name and symbol.
      * @param name_ The name of the token.
      * @param symbol_ The symbol of the token.
-     * @param _initialSupply Initial supply of the token.
+     * @param initialSupply_ Initial supply of the token.
      */
 
     constructor(
         string memory name_
         , string memory symbol_
-        , uint256 _initialSupply
+        , uint256 initialSupply_
     ) {
-        require(_initialSupply > 0,"ERC20: Value less than or equal to 0");
+        require(initialSupply_ > 0,"ERC20: Value less than or equal to 0");
         _name = name_; // Set the name of the token
         _symbol = symbol_; // Set the symbol of the token
-        _owner = msg.sender;
-        _totalSupply = _initialSupply * 10 ** uint256(decimals());
+        _owner = msg.sender; // Set the owner of the token
+        _totalSupply = initialSupply_;
         _balances[msg.sender] = _totalSupply;
         emit Transfer(address(0), msg.sender, _totalSupply);
     }
@@ -101,12 +101,12 @@ contract ERC20Token is IERC20 {
 
     /**
      * @dev Returns the allowance of a spender for a specific owner.
-     * @param owner The address of the owner.
+     * @param from The address of the owner.
      * @param spender The address of the spender.
      */
 
-    function allowance(address owner, address spender) public view returns (uint256) {
-        return _allowances[owner][spender];
+    function allowance(address from, address spender) public view returns (uint256) {
+        return _allowances[from][spender];
     }
 
     /**
@@ -141,16 +141,16 @@ contract ERC20Token is IERC20 {
 
     /**
      * @dev Internal function to approve a spender to spend tokens on behalf of an owner.
-     * @param owner The address of the owner.
+     * @param from The address of the owner.
      * @param spender The address of the spender.
      * @param amount The amount of tokens to be approved.
      */
 
-    function _approve(address owner, address spender, uint256 amount) internal {
-        require(spender != msg.sender || owner != spender, "ERC20: cannot approve self");
+    function _approve(address from, address spender, uint256 amount) internal {
+        require(spender != msg.sender || from != spender, "ERC20: cannot approve self");
         require(spender != address(0), "ERC20: approve to the zero address");
-        _allowances[owner][spender] = amount;
-        emit Approval(owner, spender, amount);
+        _allowances[from][spender] = amount;
+        emit Approval(from, spender, amount);
     }
 
     /**
