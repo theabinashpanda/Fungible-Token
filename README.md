@@ -43,54 +43,27 @@ npx hardhat init
 
 ## Deployment
 
-### 1. LocalHost
-- Start a node in a terminal with
-    ```sh
-    npx hardhat node
-    ```
-- Then we run the script on a second terminal to --network localhost:
-    ```sh
-    npx hardhat run --network localhost scripts/deploy.js
-    ```
-### 2. Goerli
+- Create a .env file and add the necessary keys and IDs according to sample.env file.
 
-- To deploy to Goerli, we need to add the network to the hardhat.config.js.
+- Don't forget to add .env to your .gitignore.
 
-- But in addition we need to supply our seed phrase and infura endpoint.
+Then, run the following command:
 
-- Add the .infura and .secret files.
+```npx hardhat run --network <network name> scripts/deploy.js```
 
-- <b> Don't forget to add .infura and .secret to your .gitignore. Update the hardhat.config.js to read the .infura and .secret files and deploy to goerli.</b>
-
-- Then, run the following command:
-    ```
-    npx hardhat run --network goerli scripts/deploy.js
-    ```
-
-### 3. Sepolia
-
-- To deploy to sepolia, we need to add the network to the hardhat.config.js.
-
-- But in addition we need to supply our seed phrase and infura endpoint.
-
-- Add the .infura and .secret files.
-
-- <b> Don't forget to add .infura and .secret to your .gitignore. Update the hardhat.config.js to read the .infura and .secret files and deploy to sepolia.</b>
-
-- Then, run the following command:
-    ```
-    npx hardhat run --network sepolia scripts/deploy.js
-    ```
+#### note: 
+- To run in localhost, you have to run the following commmand, in a separate terminal: ```npx hardhat node```
 
 ## Verifying the Smart Contract
 
-- Add the .etherscan file to your hardhat project.
-- Add the .etherscan to .gitignore.
-- Run the following command:
-```sh
-    npx hardhat verify --network <network name> <Deployed Address> <Args1> <Args2> ...
-```
+- To verify the contract, run the following command:
+
+    ```npx hardhat verify --network <network name> <Deployed Address> <Args1> <Args2> ...```
+
 - [Verified Contract Link](https://sepolia.etherscan.io/address/0x33ad683F1E67b0a98c66E305213156e16A540075)
+
+#### note:
+- Pass the exact value of arguements in the above command as that in deploy.js.
 
 ## Unit Testing
 - Run the following command:
