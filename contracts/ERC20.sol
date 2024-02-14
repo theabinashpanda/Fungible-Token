@@ -48,7 +48,7 @@ contract ERC20Token is IERC20 {
     }
 
     /**
-     * @dev Constructor to initializedecreasing the token with a name and symbol.
+     * @dev Constructor to initialize the token with a name and symbol.
      * @param name_ The name of the token.
      * @param symbol_ The symbol of the token.
      * @param initialSupply_ Initial supply of the token.
@@ -165,7 +165,7 @@ contract ERC20Token is IERC20 {
      */
 
     function _approve(address from, address spender, uint256 amount) internal notZeroAmount(amount){
-        require(spender != msg.sender || from != spender, "ERC20: cannot approve self");
+        require(from != spender, "ERC20: cannot approve self");
         require(spender != address(0), "ERC20: approve to the zero address");
         _allowances[from][spender] = amount;
         emit Approval(from, spender, amount);
