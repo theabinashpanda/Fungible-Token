@@ -83,6 +83,14 @@ contract ERC20Token is IERC20 {
     }
 
     /**
+     * @dev Returns the name of the owner.
+     */
+
+    function owner() public view returns (address) {
+        return _owner;
+    }
+
+    /**
      * @dev Returns the total supply of the token.
      */
 
