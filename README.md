@@ -73,7 +73,7 @@ npx hardhat test
 
 ## Code Coverage
 
-- For checking whether all testcases are covered or not, run the following command:
+- To generate a code coverage report, run the following command:
 ```
 npx hardhat coverage
 ```
