@@ -28,7 +28,26 @@ describe("ERC20", function() {
         const ERC20TokenInstance = await ERC20Token.deploy("Token", "TKN", 100);
         const totalSupply = await ERC20TokenInstance.totalSupply();
         // Assertions
-        expect(totalSupply).to.equal(100000000000000000000n);
+        expect(totalSupply).to.equal(100);
+    });
+
+    it("Decimals should be 18", async () => {
+        // Deploy ERC20Token contract
+        const ERC20Token = await ethers.getContractFactory("ERC20Token");
+        const ERC20TokenInstance = await ERC20Token.deploy("TestToken", "TT", 100);
+        const decimals = await ERC20TokenInstance.decimals();
+        // Assertions
+        expect(decimals).to.equal(18); 
+    });
+
+    it("is possible to see the owner", async () => {
+        // Deploy ERC20Token contract
+        const ERC20Token = await ethers.getContractFactory("ERC20Token");
+        const ERC20TokenInstance = await ERC20Token.deploy("TestToken", "TT", 100);
+        const [owner] = await ethers.getSigners();
+        const Owner = await ERC20TokenInstance.owner();
+        // Assertions
+        expect(Owner).to.equal(owner.address); 
     });
 
     // Test case to verify if transfer of tokens is possible
@@ -43,7 +62,7 @@ describe("ERC20", function() {
         const ownerBalance = await ERC20TokenInstance.balanceOf(owner.address);
         const otherAccountBalance = await ERC20TokenInstance.balanceOf(otherAccount.address);
         // Assertions
-        expect(ownerBalance).to.equal(99999999999999999990n); 
+        expect(ownerBalance).to.equal(90); 
         expect(otherAccountBalance).to.equal(10); 
     });
 
@@ -61,17 +80,17 @@ describe("ERC20", function() {
     it("is possible to approve and transferFrom", async () => {
         const ERC20Token = await ethers.getContractFactory("ERC20Token");
         const ERC20TokenInstance = await ERC20Token.deploy("Token", "TKN", 100);
-        const [owner, otherAccount] = await ethers.getSigners();
+        const [owner, otherAccount,otherAccount2] = await ethers.getSigners();
         // Approve transfer from owner to otherAccount
         await ERC20TokenInstance.approve(otherAccount.address, 50);
         // Perform transferFrom
-        await ERC20TokenInstance.connect(otherAccount).transferFrom(owner.address, otherAccount.address, 50);
+        await ERC20TokenInstance.connect(otherAccount).transferFrom(owner.address,otherAccount2.address, 10);
         // Check balances after transferFrom
         const ownerBalance = await ERC20TokenInstance.balanceOf(owner.address);
-        const otherAccountBalance = await ERC20TokenInstance.balanceOf(otherAccount.address);
+        const otherAccount2Balance = await ERC20TokenInstance.balanceOf(otherAccount2.address);
         // Assertions
-        expect(ownerBalance).to.equal(99999999999999999950n); 
-        expect(otherAccountBalance).to.equal(50); 
+        expect(ownerBalance).to.equal(90);
+        expect(otherAccount2Balance).to.equal(10); 
     });
 
     // Test case to verify failure when transferring more tokens than approved
@@ -127,7 +146,7 @@ describe("ERC20", function() {
     it("fails to approve or transfer to self", async () => {
         const ERC20Token = await ethers.getContractFactory("ERC20Token");
         const ERC20TokenInstance = await ERC20Token.deploy("Token", "TKN", 100);
-        const [owner] = await ethers.getSigners();
+        const [owner,otherAccount] = await ethers.getSigners();
         // Expecting revert when approving to self.
         await expect(ERC20TokenInstance.approve(owner, 50)).to.be.revertedWith("ERC20: cannot approve self");
         // Expecting revert when transferring to self
