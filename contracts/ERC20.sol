@@ -149,7 +149,7 @@ contract ERC20Token is IERC20 {
      */
 
     function _transfer(address sender, address recipient, uint256 amount) internal notZeroAmount(amount){
-        require(recipient != msg.sender, "ERC20: cannot transfer to self");
+        require(sender != recipient, "ERC20: cannot transfer to self");
         require(recipient != address(0), "ERC20: transfer to the zero address");
 
         _balances[sender] -= amount;
@@ -164,7 +164,7 @@ contract ERC20Token is IERC20 {
      * @param amount The amount of tokens to be approved.
      */
 
-    function _approve(address from, address spender, uint256 amount) internal notZeroAmount(amount){
+    function _approve(address from, address spender, uint256 amount) internal {
         require(from != spender, "ERC20: cannot approve self");
         require(spender != address(0), "ERC20: approve to the zero address");
         _allowances[from][spender] = amount;
