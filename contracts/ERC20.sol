@@ -38,6 +38,16 @@ contract ERC20Token is IERC20 {
     }
 
     /**
+    * @dev Modifier to ensure that the specified amount is not zero.
+    * @param amount The amount to be checked.
+    */
+
+    modifier notZeroAmount(uint256 amount) {
+        require(amount > 0, "ERC20: Amount should be greater than 0");
+        _;
+    }
+
+    /**
      * @dev Constructor to initialize the token with a name and symbol.
      * @param name_ The name of the token.
      * @param symbol_ The symbol of the token.
@@ -138,7 +148,7 @@ contract ERC20Token is IERC20 {
      * @param amount The amount of tokens to transfer.
      */
 
-    function _transfer(address sender, address recipient, uint256 amount) internal{
+    function _transfer(address sender, address recipient, uint256 amount) internal notZeroAmount(amount){
         require(recipient != msg.sender, "ERC20: cannot transfer to self");
         require(recipient != address(0), "ERC20: transfer to the zero address");
 
@@ -154,7 +164,7 @@ contract ERC20Token is IERC20 {
      * @param amount The amount of tokens to be approved.
      */
 
-    function _approve(address from, address spender, uint256 amount) internal {
+    function _approve(address from, address spender, uint256 amount) internal notZeroAmount(amount){
         require(spender != msg.sender || from != spender, "ERC20: cannot approve self");
         require(spender != address(0), "ERC20: approve to the zero address");
         _allowances[from][spender] = amount;
