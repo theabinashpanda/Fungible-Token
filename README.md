@@ -24,19 +24,19 @@ The objective of this project is to implement a basic fungible token adhering to
 ## Setting up Development Environment
 To get started with the project, follow these steps:
 ### 1. Open a terminal/PowerShell and see if they are installed:
-```sh
+```
 node -v
 npm -v
 git --version
 ```
 
 ### 2. Clone the repository:
-```sh
+```
 git clone https://gitlab.mindfire.co.in/abinash.p/fungible-token.git
 ```
 
 ### 3. Install Hardhat and Initialization
-```sh
+```
 npm install --save-dev hardhat
 npx hardhat init
 ```
@@ -49,25 +49,32 @@ npx hardhat init
 
 Then, run the following command:
 
-```npx hardhat run --network <network name> scripts/deploy.js```
+```
+npx hardhat run --network <network name> scripts/deploy.js
+```
 
-#### note: 
-- To run in localhost, you have to run the following commmand, in a separate terminal: ```npx hardhat node```
+#### Note: 
+- To run in localhost, you have to run the following commmand, in a separate terminal: 
+```
+npx hardhat node
+```
 
 ## Verifying the Smart Contract
 
 - To verify the contract, run the following command:
 
-    ```npx hardhat verify --network <network name> <Deployed Address> <Args1> <Args2> ...```
+    ```
+    npx hardhat verify --network <network name> <Deployed Address> <Args1> <Args2> ...
+    ```
 
 - [Verified Contract Link](https://sepolia.etherscan.io/address/0xaBe91fF39293F273f51eBd90fC85691E9fc57Dd5#code)
 
-#### note:
+#### Note:
 - Pass the exact value of arguements in the above command as that in deploy.js.
 
 ## Unit Testing
 - Run the following command:
-```sh
+```
 npx hardhat test
 ```
 
