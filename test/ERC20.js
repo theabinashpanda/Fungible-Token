@@ -236,5 +236,23 @@ describe("ERC20", function() {
         // Expecting revert when transferring to self
         await expect(ERC20TokenInstance.transfer(owner, 0)).to.be.revertedWith("ERC20: Amount should be greater than 0");
     });
+
+    it("fails possible to increase allowance by 0", async () => {
+        const ERC20Token = await ethers.getContractFactory("ERC20Token");
+        const ERC20TokenInstance = await ERC20Token.deploy("Token", "TKN", 100);
+        const [owner, otherAccount] = await ethers.getSigners();
+        // Expecting revert when increasing allowance by zero
+        await expect(ERC20TokenInstance.increaseAllowance(otherAccount.address, 0)).to.be.revertedWith("ERC20: Amount should be greater than 0");
+    });
+
+    it("fails to decrease allowance by 0", async () => {
+        const ERC20Token = await ethers.getContractFactory("ERC20Token");
+        const ERC20TokenInstance = await ERC20Token.deploy("Token", "TKN", 100);
+        const [owner, otherAccount] = await ethers.getSigners();
+        // Approve transfer from owner to otherAccount
+        await ERC20TokenInstance.approve(otherAccount.address, 100);
+        // Expecting revert when decreasing allowance by zero
+        await expect(ERC20TokenInstance.decreaseAllowance(otherAccount.address, 0)).to.be.revertedWith("ERC20: Amount should be greater than 0");
+    });
     
 });
