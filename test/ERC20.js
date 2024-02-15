@@ -117,7 +117,7 @@ describe("ERC20", function() {
         expect(allowance).to.equal(50); 
     });
 
-    it("possible to decrease allowance", async () => {
+    it("is possible to decrease allowance", async () => {
         const ERC20Token = await ethers.getContractFactory("ERC20Token");
         const ERC20TokenInstance = await ERC20Token.deploy("Token", "TKN", 100);
         const [owner, otherAccount] = await ethers.getSigners();
@@ -238,7 +238,7 @@ describe("ERC20", function() {
     });
 
     // Test case to verify that it fails to increase allowance by 0
-    it("fails possible to increase allowance by 0", async () => {
+    it("fails to increase allowance by 0", async () => {
         const ERC20Token = await ethers.getContractFactory("ERC20Token");
         const ERC20TokenInstance = await ERC20Token.deploy("Token", "TKN", 100);
         const [owner, otherAccount] = await ethers.getSigners();
