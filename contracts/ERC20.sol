@@ -8,7 +8,6 @@ pragma solidity ^0.8.18;
  * @author https://gitlab.mindfire.co.in/abinash.p
  * @author https://github.com/theabinashpanda
  */
-
 import {IERC20} from "./IERC20.sol";
 
 contract ERC20Token is IERC20 {
@@ -24,14 +23,12 @@ contract ERC20Token is IERC20 {
      * @param previousOwner The address of the previous owner.
      * @param newOwner The address of the new owner.
      */
-
     event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);
     
     /**
      * @dev Modifier to only allow the owner of the contract to perform a certain action.
      * @notice Reverts if the caller is not the owner.
      */
-    
     modifier onlyOwner() {
         require(msg.sender == _owner, "ERC20: Only owner can perform this action");
         _;
@@ -41,7 +38,6 @@ contract ERC20Token is IERC20 {
     * @dev Modifier to ensure that the specified amount is not zero.
     * @param amount The amount to be checked.
     */
-
     modifier notZeroAmount(uint256 amount) {
         require(amount > 0, "ERC20: Amount should be greater than 0");
         _;
@@ -53,7 +49,6 @@ contract ERC20Token is IERC20 {
      * @param symbol_ The symbol of the token.
      * @param initialSupply_ Initial supply of the token.
      */
-
     constructor(
         string memory name_
         , string memory symbol_
@@ -71,7 +66,6 @@ contract ERC20Token is IERC20 {
     /**
      * @dev Returns the name of the token.
      */
-
     function name() public view returns (string memory) {
         return _name;
     }
@@ -79,7 +73,6 @@ contract ERC20Token is IERC20 {
     /**
      * @dev Returns the symbol of the token.
      */
-
     function symbol() public view returns (string memory) {
         return _symbol;
     }
@@ -87,7 +80,6 @@ contract ERC20Token is IERC20 {
     /**
      * @dev Returns the number of decimal places for the token.
      */
-
     function decimals() public pure returns (uint8) {
         return 18;
     }
@@ -95,7 +87,6 @@ contract ERC20Token is IERC20 {
     /**
      * @dev Returns the name of the owner.
      */
-
     function owner() public view returns (address) {
         return _owner;
     }
@@ -103,7 +94,6 @@ contract ERC20Token is IERC20 {
     /**
      * @dev Returns the total supply of the token.
      */
-
     function totalSupply() public view returns (uint256) {
         return _totalSupply;
     }
@@ -112,7 +102,6 @@ contract ERC20Token is IERC20 {
      * @dev Returns the balance of the specified account.
      * @param account The address of the account to query the balance of.
      */
-
     function balanceOf(address account) public view returns (uint256) {
         return _balances[account];
     }
@@ -122,7 +111,6 @@ contract ERC20Token is IERC20 {
      * @param from The address of the owner.
      * @param spender The address of the spender.
      */
-
     function allowance(address from, address spender) public view returns (uint256) {
         return _allowances[from][spender];
     }
@@ -133,7 +121,6 @@ contract ERC20Token is IERC20 {
      * @notice Only the current owner can call this function. Also, the new owner cannot be 
      * the zero address, and the current owner cannot set the owner to themselves again.
      */
-
     function transferOwnership(address newOwner) public onlyOwner {
         require(newOwner != address(0), "ERC20: new owner is the zero address");
         require(newOwner != _owner, "ERC20: new owner is already the current owner");
@@ -147,7 +134,6 @@ contract ERC20Token is IERC20 {
      * @param recipient The address of the recipient.
      * @param amount The amount of tokens to transfer.
      */
-
     function _transfer(address sender, address recipient, uint256 amount) internal notZeroAmount(amount){
         require(sender != recipient, "ERC20: cannot transfer to self");
         require(recipient != address(0), "ERC20: transfer to the zero address");
@@ -163,7 +149,6 @@ contract ERC20Token is IERC20 {
      * @param spender The address of the spender.
      * @param amount The amount of tokens to be approved.
      */
-
     function _approve(address from, address spender, uint256 amount) internal {
         require(from != spender, "ERC20: cannot approve self");
         require(spender != address(0), "ERC20: approve to the zero address");
@@ -177,7 +162,6 @@ contract ERC20Token is IERC20 {
      * @param amount The amount of tokens to transfer.
      * @return A boolean indicating whether the transfer was successful or not.
      */
-
     function transfer(address recipient, uint256 amount) public returns (bool) {
         _transfer(msg.sender, recipient, amount);
         return true;
@@ -189,7 +173,6 @@ contract ERC20Token is IERC20 {
      * @param amount The amount of tokens to be approved.
      * @return A boolean indicating whether the approval was successful or not.
      */
-
     function approve(address spender, uint256 amount) public returns (bool) {
         _approve(msg.sender, spender, amount);
         return true;
@@ -202,7 +185,6 @@ contract ERC20Token is IERC20 {
      * @param amount The amount of tokens to transfer.
      * @return A boolean indicating whether the transfer was successful or not.
      */
-
     function transferFrom(address sender, address recipient, uint256 amount) public returns (bool) {
         uint256 currentAllowance = _allowances[sender][msg.sender];
         require(sender != address(0), "ERC20: transfer from the zero address");
@@ -231,7 +213,6 @@ contract ERC20Token is IERC20 {
      * @param subtractedValue The amount of decrease in allowance.
      * @return A boolean indicating whether the decrease in allowance was successful or not.
      */
-
     function decreaseAllowance(address spender, uint256 subtractedValue) public notZeroAmount(subtractedValue) returns (bool) {
         uint256 currentAllowance = _allowances[msg.sender][spender];
         require(currentAllowance >= subtractedValue, "ERC20: decreased allowance below zero");
