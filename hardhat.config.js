@@ -24,5 +24,5 @@ module.exports = {
   sourcify: {
     enabled: false
   },  
-  solidity: "0.8.20",
+  solidity: "0.8.18",
 };

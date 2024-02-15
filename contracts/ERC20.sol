@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.18;
 
 /**
  * @title ERC20 Token Implementation
@@ -14,7 +14,7 @@ import {IERC20} from "./IERC20.sol";
 contract ERC20Token is IERC20 {
     string private _name; // Token name
     string private _symbol; // Token symbol
-    uint256 private _totalSupply; // Total token supply
+    uint256 private immutable _totalSupply; // Total token supply
     address private _owner; // Owner of the contract
     mapping(address => uint256) private _balances; // Balances of token holders
     mapping(address => mapping(address => uint256)) private _allowances; // Allowances for token spending
@@ -129,16 +129,16 @@ contract ERC20Token is IERC20 {
 
     /**
      * @dev Transfers ownership of the contract to a new address.
-     * @param _newOwner The address to transfer ownership to.
+     * @param newOwner The address to transfer ownership to.
      * @notice Only the current owner can call this function. Also, the new owner cannot be 
      * the zero address, and the current owner cannot set the owner to themselves again.
      */
 
-    function transferOwnership(address _newOwner) public onlyOwner {
-        require(_newOwner != address(0), "ERC20: new owner is the zero address");
-        require(_newOwner != _owner, "ERC20: new owner is already the current owner");
-        emit OwnershipTransferred(_owner, _newOwner);
-        _owner = _newOwner;
+    function transferOwnership(address newOwner) public onlyOwner {
+        require(newOwner != address(0), "ERC20: new owner is the zero address");
+        require(newOwner != _owner, "ERC20: new owner is already the current owner");
+        emit OwnershipTransferred(_owner, newOwner);
+        _owner = newOwner;
     }
 
     /**
