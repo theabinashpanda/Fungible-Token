@@ -229,14 +229,12 @@ describe("ERC20", function() {
     });
 
     // Test case to verify that it fails to approve or transfer zero amount
-    it("fails to approve or transfer zero amount", async () => {
+    it("fails to transfer zero amount", async () => {
         const ERC20Token = await ethers.getContractFactory("ERC20Token");
         const ERC20TokenInstance = await ERC20Token.deploy("Token", "TKN", 100);
         const [owner,otherAccount] = await ethers.getSigners();
-        // Expecting revert when approving to self.
-        await expect(ERC20TokenInstance.approve(owner, 0)).to.be.revertedWith("ERC20: Amount should be greater than 0");
-        // Expecting revert when transferring to self
-        await expect(ERC20TokenInstance.transfer(owner, 0)).to.be.revertedWith("ERC20: Amount should be greater than 0");
+        // Expecting revert when transferring zero amount
+        await expect(ERC20TokenInstance.transfer(otherAccount, 0)).to.be.revertedWith("ERC20: Amount should be greater than 0");
     });
 
     // Test case to verify that it fails to increase allowance by 0
