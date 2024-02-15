@@ -84,7 +84,16 @@ npx hardhat test
 ```
 npx hardhat coverage
 ```
-
+## Slither Analysis
+- Install slither by running the following command:
+```
+pip3 install slither-analyzer
+```
+- Slither require Python 3.8+.
+- To run slither, run the following command:
+```
+slither .
+```
 ## Contributers
 [Abinash Panda](https://gitlab.mindfire.co.in/abinash.p)
 
