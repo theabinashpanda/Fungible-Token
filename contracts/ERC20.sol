@@ -15,7 +15,7 @@ contract ERC20Token is IERC20,Owner {
     string private _name; // Token name
     string private _symbol; // Token symbol
     uint256 private _totalSupply; // Total token supply
-    uint256 private MAX_SUPPLY = 1000000; // Maximum supply
+    uint256 private constant MAX_SUPPLY = 1000000 * 10 ** 18; // Maximum supply
     mapping(address => uint256) private _balances; // Balances of token holders
     mapping(address => mapping(address => uint256)) private _allowances; // Allowances for token spending
 
