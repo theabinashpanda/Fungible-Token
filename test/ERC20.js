@@ -20,7 +20,7 @@ describe("ERC20", function() {
     });
 
     // Test case to verify if transfer of tokens is possible
-    it("is possible to transfer", async () => {
+    it("Sucessfully transfer to other account", async () => {
         
         const ERC20Token = await ethers.getContractFactory("ERC20Token");100
         const ERC20TokenInstance = await ERC20Token.deploy("Token", "TKN", 100);
@@ -60,7 +60,7 @@ describe("ERC20", function() {
         await expect(ERC20TokenInstance.transfer("0x0000000000000000000000000000000000000000", 10)).to.be.revertedWith("ERC20: transfer to the zero address");
     });
 
-    it("Possible to approve", async () => {
+    it("Successfully approve to other account", async () => {
         const ERC20Token = await ethers.getContractFactory("ERC20Token");
         const ERC20TokenInstance = await ERC20Token.deploy("Token", "TKN", 100);
         const [owner,otherAccount] = await ethers.getSigners();
@@ -78,7 +78,6 @@ describe("ERC20", function() {
         await expect(ERC20TokenInstance.approve(owner, 50)).to.be.revertedWith("ERC20: cannot approve self");
     });
 
-    // Test case to verify that it fails to approve to zero address
     it("Fails to approve to zero address", async () => {
         
         const ERC20Token = await ethers.getContractFactory("ERC20Token");
@@ -89,7 +88,7 @@ describe("ERC20", function() {
     });
 
     // Test case to verify if transferFrom functionalities work
-    it("is possible to transferFrom", async () => {
+    it("Sucessfully transferFrom owner by other account", async () => {
         const ERC20Token = await ethers.getContractFactory("ERC20Token");
         const ERC20TokenInstance = await ERC20Token.deploy("Token", "TKN", 100);
         const [owner, otherAccount,otherAccount2] = await ethers.getSigners();
@@ -160,7 +159,7 @@ describe("ERC20", function() {
         await expect(ERC20TokenInstance.connect(otherAccount).transferFrom(owner.address,otherAccount2.address, 0)).to.be.revertedWith("ERC20: Amount should be greater than 0");
     });
 
-    it("is possible to transfer owner", async () => {
+    it("Successfully transfer owner", async () => {
         
         const ERC20Token = await ethers.getContractFactory("ERC20Token");
         const ERC20TokenInstance = await ERC20Token.deploy("Token", "TKN", 100);
