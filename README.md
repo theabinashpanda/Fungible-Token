@@ -65,9 +65,9 @@ npx hardhat node
 
 - To verify the contract, run the following command:
 
-    ```
-    npx hardhat verify --network <network name> <Deployed Address> <Args1> <Args2> ...
-    ```
+```
+npx hardhat verify --network <network name> <Deployed Address> <Args1> <Args2> ...
+```
 
 - [Verified Contract Link](https://sepolia.etherscan.io/address/0x0D3aDBd04E4D578bA7a3b547Ec053091a1d3C6eE#code)
 
