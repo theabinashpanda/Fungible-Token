@@ -72,7 +72,7 @@ contract ERC20Token is IERC20,Owner {
      * @param amount The amount of tokens to be approved.
      * @return A boolean indicating whether the approval was successful or not.
      */
-    function approve(address spender, uint256 amount) public returns (bool) {
+    function approve(address spender, uint256 amount) public notZeroAmount(amount) returns (bool) {
         _approve(msg.sender, spender, amount);
         return true;
     }
