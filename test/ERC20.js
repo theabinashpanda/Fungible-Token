@@ -26,7 +26,7 @@ describe("ERC20", function() {
     describe("transfer function",function() {
         
         // Test case to verify if transfer of tokens is possible
-        it("Sucessfully transfer to other account", async () => {
+        it("Sucessfully transfer tokens to other account", async () => {
             
             const ERC20Token = await ethers.getContractFactory("ERC20Token");100
             const ERC20TokenInstance = await ERC20Token.deploy("Token", "TKN", 100);
@@ -41,7 +41,7 @@ describe("ERC20", function() {
             expect(otherAccountBalance).to.equal(10); 
         });
 
-        it("Fails to transfer to self", async () => {
+        it("Fails to transfer tokens to self", async () => {
             const ERC20Token = await ethers.getContractFactory("ERC20Token");
             const ERC20TokenInstance = await ERC20Token.deploy("Token", "TKN", 100);
             const [owner] = await ethers.getSigners();
@@ -57,7 +57,7 @@ describe("ERC20", function() {
             await expect(ERC20TokenInstance.transfer(otherAccount, 0)).to.be.revertedWith("ERC20: Amount should be greater than 0");
         });
 
-        it("Fails to transfer to zero address", async () => {
+        it("Fails to transfer tokens to zero address", async () => {
             
             const ERC20Token = await ethers.getContractFactory("ERC20Token");
             const ERC20TokenInstance = await ERC20Token.deploy("Token", "TKN", 100);
@@ -70,7 +70,7 @@ describe("ERC20", function() {
 
     describe("approve Function",function () {
        
-        it("Successfully approve to other account", async () => {
+        it("Successfully approve tokens to other account", async () => {
             const ERC20Token = await ethers.getContractFactory("ERC20Token");
             const ERC20TokenInstance = await ERC20Token.deploy("Token", "TKN", 100);
             const [owner,otherAccount] = await ethers.getSigners();
@@ -80,7 +80,7 @@ describe("ERC20", function() {
             expect(allowance).to.equal(50);
         });    
     
-        it("Fails to approve to self", async () => {
+        it("Fails to approve tokens to self", async () => {
             const ERC20Token = await ethers.getContractFactory("ERC20Token");
             const ERC20TokenInstance = await ERC20Token.deploy("Token", "TKN", 100);
             const [owner] = await ethers.getSigners();
@@ -88,7 +88,7 @@ describe("ERC20", function() {
             await expect(ERC20TokenInstance.approve(owner, 50)).to.be.revertedWith("ERC20: cannot approve self");
         });
     
-        it("Fails to approve to zero address", async () => {
+        it("Fails to approve tokens to zero address", async () => {
             
             const ERC20Token = await ethers.getContractFactory("ERC20Token");
             const ERC20TokenInstance = await ERC20Token.deploy("Token", "TKN", 100);
@@ -196,7 +196,7 @@ describe("ERC20", function() {
             await expect(ERC20TokenInstance.connect(otherAccount).mint(otherAccount2.address,10)).to.be.revertedWith("Ownable: caller is not the owner");
         });
     
-        it("Total supply exceeds when implementing mint", async () => {
+        it("Fails to implement mint due to total supply exceeds", async () => {
             const ERC20Token = await ethers.getContractFactory("ERC20Token");
             const ERC20TokenInstance = await ERC20Token.deploy("Token", "TKN", 1000000000000000000000000n);
             const [owner,otherAccount] = await ethers.getSigners();
@@ -228,7 +228,7 @@ describe("ERC20", function() {
 
     describe("transferOwnerShip function",function () {
 
-        it("Successfully transfer owner", async () => {
+        it("Successfully transfer ownership", async () => {
         
             const ERC20Token = await ethers.getContractFactory("ERC20Token");
             const ERC20TokenInstance = await ERC20Token.deploy("Token", "TKN", 100);
@@ -237,7 +237,7 @@ describe("ERC20", function() {
             await expect(ERC20TokenInstance.transferOwnership(otherAccount.address)).not.to.be.reverted; 
         });
     
-        it("Fails to transfer owner", async () => {
+        it("Fails to transfer ownership by other account", async () => {
             
             const ERC20Token = await ethers.getContractFactory("ERC20Token");
             const ERC20TokenInstance = await ERC20Token.deploy("Token", "TKN", 100);
@@ -267,7 +267,7 @@ describe("ERC20", function() {
     });
 
     describe("All state variable functions",function () {
-        
+
         it("Token name should be TestToken", async () => {
         
             const ERC20Token = await ethers.getContractFactory("ERC20Token");
