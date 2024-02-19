@@ -18,86 +18,84 @@ The objective of this project is to implement a basic fungible token adhering to
    
 7. **Events:** Emit appropriate events such as Transfer and Approval for better transparency.
 
+8. **Mint:** Creates amount tokens and assigns them to account, increasing the total supply. Emits a transfer event with from set to the zero address.
+
 ## UML Design
-![UML](https://www.plantuml.com/plantuml/dpng/dLHDQzmm4BtxLmpquh0sb41BMMX8A2tqL6X3BwMOiJnRHFLX93aXfDdVNjcHLDK6BPkzh3sQzpHlzhszjWwDcwIeAguScGCoWiyVltwuV0sF5VZF8_RM6MJk2NRWj4FnRHf7yL1Vm1uc3xfyytRRsAD0nUZBeSPXC6Gj86DwKgw8yW_A7iWaa276HqxADH44A2DDhxNOSg0G-dw-Ev7eUqMcWVXgHr83cU8WE8v6tr6zmfoSOgFaaz7o7qiWEKzTsovVjt4t1q-vZnmDE9sztA6OAEcwM80tYnOKzRA7h3c8Ai2Vgee9j1OMGzpgtwI2ArhmMhdw1Pr2IQkIVP1z73ufwpBlX2Ffrpm3ViI5lB-AxJ-X2nQoXUOIWMT8Lh3v8dUPcdgUljk7oHjudZmhT5nnn-FSgyqUOORx8CJ-K7rcsTO7OboYi2awxy91ALR7B4iXG-aNM_Nc2KhUIirDC5U2_EUoOnQSeb6srsPvMNMMxrp7nAwnvshO0LVC45gwILgs4_a76hvdJj-m37IQnKxz4lOYrIleeiANgOiiSR-d8nmPyWndwMtRFrVX_xsghZruak8l)
+![UML](https://www.plantuml.com/plantuml/dpng/fLNlQzim4Ftkl-AWNrmQmoXiZC1AmzXWi9AoTh0V3AFObrLCbeGa9mrT-xTFbYN5jJAJiNo9kRltT7xtJhxKXYZJDYpBA3UergH2-F3kqzlp5_2GWVtX1hc1MqMuNgFArqeqSo1rhL1heBp6UwndOCI1u8Qm5kVGMkRpbwzE1tGBAPMmwLniEQe3K2tHFgeZIOl2_JsGbJQALEOHpi24ZWE3mefAYjpC0XX88rfkJc4EAo5Ooa5ScnWfV5T74yGctblLzYoUv3yQCy8GTjDAoNQvhGguj7156E4LBjVnT59LZdiAHHWJsmuNKMvECnW9CIHvpBAA4PjRTgMzTue8A1r175OqWYlMTrG6WociSwbmGqMhbtyn1yVjuTGpDvo0u6pd2lC-SGQLuDgejZ8YnkACOYjvmj-NFe7eoI0cilrhkvsv5R-GGtXvUnJbFw7afC5HIE-QbHzi4QTU3iOwIhd62JTmjVXItdo-llxurLSqHCgEydlGuir5GFs0qizVJnHF4LY6w0NjLUN2V4Cb5iwYUU_KqJwUm9QQEygloBqtQLgMpADJgPnxXMRGApG8K4uD3VAK2LNSzxXESKep61y_NApzcdjN7uaRRRSUO_-zZyP6Sx-V4o1lnaulwyKWK1_riYNnoHlZQNzD9CUdjT4Gpxy5wPqzXfw1R1L2RNLf2DEnZTVT4WtMfoX-N_XlK19sUvbbb_Qajc5_0000)
 
 ## Setting up Development Environment
 To get started with the project, follow these steps:
 ### 1. Open a terminal/PowerShell and see if they are installed:
-```sh
+```
 node -v
 npm -v
 git --version
 ```
 
 ### 2. Clone the repository:
-```sh
+```
 git clone https://gitlab.mindfire.co.in/abinash.p/fungible-token.git
 ```
 
 ### 3. Install Hardhat and Initialization
-```sh
+```
 npm install --save-dev hardhat
 npx hardhat init
 ```
 
 ## Deployment
 
-### 1. LocalHost
-- Start a node in a terminal with
-    ```sh
-    npx hardhat node
-    ```
-- Then we run the script on a second terminal to --network localhost:
-    ```sh
-    npx hardhat run --network localhost scripts/deploy.js
-    ```
-### 2. Goerli
+- Create a .env file and add the necessary keys and IDs according to sample.env file.
 
-- To deploy to Goerli, we need to add the network to the hardhat.config.js.
+- Don't forget to add .env to your .gitignore.
 
-- But in addition we need to supply our seed phrase and infura endpoint.
+Then, run the following command:
 
-- Add the .infura and .secret files.
+```
+npx hardhat run --network <network name> scripts/deploy.js
+```
 
-- <b> Don't forget to add .infura and .secret to your .gitignore. Update the hardhat.config.js to read the .infura and .secret files and deploy to goerli.</b>
-
-- Then, run the following command:
-    ```
-    npx hardhat run --network goerli scripts/deploy.js
-    ```
-
-### 3. Sepolia
-
-- To deploy to sepolia, we need to add the network to the hardhat.config.js.
-
-- But in addition we need to supply our seed phrase and infura endpoint.
-
-- Add the .infura and .secret files.
-
-- <b> Don't forget to add .infura and .secret to your .gitignore. Update the hardhat.config.js to read the .infura and .secret files and deploy to sepolia.</b>
-
-- Then, run the following command:
-    ```
-    npx hardhat run --network sepolia scripts/deploy.js
-    ```
+#### Note: 
+- To run in localhost, you have to run the following commmand, in a separate terminal: 
+```
+npx hardhat node
+```
 
 ## Verifying the Smart Contract
 
-- Add the .etherscan file to your hardhat project.
-- Add the .etherscan to .gitignore.
-- Run the following command:
-```sh
-    npx hardhat verify --network <network name> <Deployed Address> <Args1> <Args2> ...
+- To verify the contract, run the following command:
+
 ```
-- [Verified Contract Link](https://sepolia.etherscan.io/address/0x33ad683F1E67b0a98c66E305213156e16A540075)
+npx hardhat verify --network <network name> <Deployed Address> <Args1> <Args2> ...
+```
+
+- [Verified Contract Link](https://sepolia.etherscan.io/address/0x0D3aDBd04E4D578bA7a3b547Ec053091a1d3C6eE#code)
+
+#### Note:
+- Pass the exact value of arguements in the above command as that in deploy.js.
 
 ## Unit Testing
 - Run the following command:
-```sh
+```
 npx hardhat test
 ```
 
+## Code Coverage
+
+- To generate a code coverage report, run the following command:
+```
+npx hardhat coverage
+```
+## Slither Analysis
+- Install slither by running the following command:
+```
+pip3 install slither-analyzer
+```
+- Slither require Python 3.8+.
+- To run slither, run the following command:
+```
+slither .
+```
 ## Contributers
 [Abinash Panda](https://gitlab.mindfire.co.in/abinash.p)
 
