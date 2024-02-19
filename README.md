@@ -69,7 +69,7 @@ npx hardhat node
     npx hardhat verify --network <network name> <Deployed Address> <Args1> <Args2> ...
     ```
 
-- [Verified Contract Link](https://sepolia.etherscan.io/address/0xc40705fe1A33f604B755f0a6e26FF9a577708a90#code)
+- [Verified Contract Link](https://sepolia.etherscan.io/address/0x289d4F2c43De1D17B66d29906E46A56710661C12#code)
 
 #### Note:
 - Pass the exact value of arguements in the above command as that in deploy.js.
