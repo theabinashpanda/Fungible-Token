@@ -317,7 +317,7 @@ describe("Ownable",function () {
     });
 
     describe("getter Functions",function () {
-        it("Owner should be the owner of the contract", async () => {
+        it("Caller must be the owner of the contract", async () => {
             const ERC20Token = await ethers.getContractFactory("ERC20Token");
             const ERC20TokenInstance = await ERC20Token.deploy("TestToken", "TT", 100);
             const [owner] = await ethers.getSigners();
